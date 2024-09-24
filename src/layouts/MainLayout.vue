@@ -12,10 +12,10 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          Roomie Hub
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>Piso: 'todavía no te has unido a ninguno'</div>
       </q-toolbar>
     </q-header>
 
@@ -28,7 +28,7 @@
         <q-item-label
           header
         >
-          Essential Links
+          Menú principal
         </q-item-label>
 
         <EssentialLink
@@ -55,46 +55,46 @@ defineOptions({
 
 const linksList = [
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
+    title: 'Piso',
+    caption: 'Toda la info de tu hogar',
+    icon: 'apartment',
+    to: 'piso'
   },
   {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
+    title: 'Roomies',
+    caption: 'Tus compañeros de vivencias',
+    icon: 'group',
+    to: 'roomies'
   },
   {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
+    title: 'Eventos',
+    caption: 'Que no falte la diversión',
+    icon: 'event',
+    to: 'eventos'
   },
   {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
+    title: 'Tareas',
+    caption: 'El trabajo bien planificado',
+    icon: 'task',
+    to: 'tareas'
   },
   {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
+    title: 'Gastos',
+    caption: 'Aquí vamos todos a "pachas"',
+    icon: 'euro',
+    to: 'gastos'
   },
   {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
+    title: 'Compras',
+    caption: 'Que no falte nada en la nevera',
+    icon: 'shopping_cart',
+    to: 'compras'
   },
   {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
+    title: 'About',
+    caption: 'Sobre mí',
+    icon: 'info',
+    to: 'about'
   }
 ]
 
