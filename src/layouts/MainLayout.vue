@@ -14,8 +14,13 @@
         <q-toolbar-title>
           Roomie Hub
         </q-toolbar-title>
+        
+        <q-btn-group stretch>
+          <q-btn color="primary" size="sm" icon="home" glossy to="/" />
+          <q-btn color="primary" size="sm" icon="login" stack glossy label="LogIn" to="/login" />
+          <q-btn color="primary" size="sm" icon="app_registration" stack glossy label="Register" to="/register" />
+        </q-btn-group>
 
-        <div>Piso: 'todavía no te has unido a ninguno'</div>
       </q-toolbar>
     </q-header>
 
