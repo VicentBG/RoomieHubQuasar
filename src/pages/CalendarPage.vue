@@ -16,27 +16,29 @@
         </q-card>
       </div>
       <div class="col-12 col-md-9">
-        <q-calendar-agenda
+        <q-calendar-month
           v-model="selectedDate"
-          view="month"
-          :weekdays="[1, 2, 3, 4, 5, 6, 0]"
-          :interval-minutes="60"
-          :interval-height="50"
+          animated
+          bordered
           :events="filteredEvents"
-          :event-color="getEventColor"
+          @click-date="onDateClick"
           @click-event="onEventClick"
         >
-          <template #event="{ event }">
-            <q-badge
-              :color="getEventColor(event)"
-              :text-color="event.textColor || 'white'"
-              class="full-width q-pa-xs"
-            >
-              <q-icon :name="getEventIcon(event)" size="xs" class="q-mr-xs" />
-              {{ event.title }}
-            </q-badge>
+          <template #day="{ events }">
+            <template v-for="event in events" :key="event.id">
+              <q-badge
+                :color="getEventColor(event)"
+                :text-color="event.textColor || 'white'"
+                class="q-mb-xs cursor-pointer"
+                style="width: 100%;"
+                @click.stop="onEventClick({ event })"
+              >
+                <q-icon :name="getEventIcon(event)" size="xs" class="q-mr-xs" />
+                {{ event.title }}
+              </q-badge>
+            </template>
           </template>
-        </q-calendar-agenda>
+        </q-calendar-month>
       </div>
     </div>
 
@@ -65,10 +67,10 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { date } from 'quasar'
-import '@quasar/quasar-ui-qcalendar/src/QCalendarAgenda.sass'
-import { QCalendarAgenda } from '@quasar/quasar-ui-qcalendar'
+import '@quasar/quasar-ui-qcalendar/src/QCalendarMonth.sass'
+import { QCalendarMonth } from '@quasar/quasar-ui-qcalendar'
 
-const selectedDate = ref(new Date())
+const selectedDate = ref('2023-05-15')
 const eventDialog = ref(false)
 const selectedEvent = ref(null)
 const selectedTypes = ref(['tarea', 'pago', 'evento'])
@@ -150,6 +152,10 @@ const getEventIcon = (event) => {
   }
 }
 
+const onDateClick = (data) => {
+  console.log('Fecha seleccionada:', data.date)
+}
+
 const onEventClick = (data) => {
   selectedEvent.value = data.event
   eventDialog.value = true
@@ -165,9 +171,8 @@ const formatTime = (timeString) => {
 </script>
 
 <style lang="scss">
-.q-calendar-agenda {
+.q-calendar-month {
   .q-badge {
-    cursor: pointer;
     transition: all 0.3s;
 
     &:hover {
