@@ -1,7 +1,7 @@
 <template>
     <q-page class="q-pa-md">
       <div class="text-h2 text-primary text-center q-mb-xl">
-        Organiza tu vida universitaria con RoomieHub 🎓🏠
+        Organiza tu vida compartida con RoomieHub 🎓🏠
       </div>
   
       <q-card class="my-card q-mb-xl">
@@ -122,19 +122,19 @@
       quote: "RoomieHub ha hecho que vivir con compañeros de piso sea mucho más fácil y divertido. ¡Ya no discutimos por las tareas del hogar!",
       name: "Ana G.",
       title: "Estudiante de Psicología",
-      avatar: "/placeholder.svg?height=40&width=40"
+      avatar: "img/ava1.jpg?height=40&width=40"
     },
     {
       quote: "Gracias a RoomieHub, puedo concentrarme en mis estudios sin preocuparme por los conflictos en casa. ¡Es genial!",
       name: "Carlos M.",
       title: "Estudiante de Ingeniería",
-      avatar: "/placeholder.svg?height=40&width=40"
+      avatar: "img/ava2.webp?height=40&width=40"
     },
     {
       quote: "La función de división de gastos es increíble. Ahora todos pagamos lo que nos corresponde sin complicaciones.",
       name: "Laura S.",
       title: "Estudiante de Economía",
-      avatar: "/placeholder.svg?height=40&width=40"
+      avatar: "img/ava3.avif?height=40&width=40"
     }
   ]
   </script>

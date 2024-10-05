@@ -85,7 +85,7 @@ const events = [
   {
     id: 1,
     title: 'Limpiar la cocina',
-    date: '2023-05-15',
+    date: '2024-10-05',
     time: '10:00',
     type: 'tarea',
     description: 'Limpiar a fondo la cocina, incluyendo el horno y la nevera.',
@@ -95,7 +95,7 @@ const events = [
   {
     id: 2,
     title: 'Pagar el alquiler',
-    date: '2023-05-01',
+    date: '2024-10-01',
     time: '09:00',
     type: 'pago',
     description: 'Transferir el dinero del alquiler al propietario.',
@@ -104,7 +104,7 @@ const events = [
   {
     id: 3,
     title: 'Fiesta de cumpleaños de Carlos',
-    date: '2023-05-20',
+    date: '2024-10-20',
     time: '20:00',
     type: 'evento',
     description: 'Celebración del cumpleaños de Carlos en el salón común.',
@@ -113,7 +113,7 @@ const events = [
   {
     id: 4,
     title: 'Comprar suministros',
-    date: '2023-05-10',
+    date: '2024-10-10',
     time: '16:00',
     type: 'tarea',
     description: 'Comprar papel higiénico, detergente y otros suministros para el piso.',
@@ -123,7 +123,7 @@ const events = [
   {
     id: 5,
     title: 'Noche de películas',
-    date: '2023-05-25',
+    date: '2024-10-25',
     time: '21:00',
     type: 'evento',
     description: 'Noche de películas con todos los compañeros de piso.',
