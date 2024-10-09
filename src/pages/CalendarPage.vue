@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md">
-    <h2 class="text-h4 text-primary q-mb-md">Calendario de RoomieHub</h2>
+    <h2 class="text-h4 text-primary q-mb-md">Calendario general</h2>
     <div class="row q-col-gutter-md">
       <div class="col-12 col-md-3">
         <q-card>
@@ -15,8 +15,16 @@
           </q-card-section>
         </q-card>
       </div>
+      <div class="subcontent">
+        <navigation-bar
+          @today="onToday"
+          @prev="onPrev"
+          @next="onNext"
+        />
+      </div>
       <div class="col-12 col-md-9">
         <q-calendar-month
+          ref="calendar"
           v-model="selectedDate"
           animated
           bordered
@@ -24,8 +32,8 @@
           @click-date="onDateClick"
           @click-event="onEventClick"
         >
-          <template #day="{ events }">
-            <template v-for="event in events" :key="event.id">
+          <template #day="{ scope: { timestamp } }">
+            <template v-for="event in eventsMap[timestamp.date]" :key="event.id">
               <q-badge
                 :color="getEventColor(event)"
                 :text-color="event.textColor || 'white'"
@@ -65,12 +73,19 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, useTemplateRef } from 'vue'
 import { date } from 'quasar'
 import '@quasar/quasar-ui-qcalendar/src/QCalendarMonth.sass'
-import { QCalendarMonth } from '@quasar/quasar-ui-qcalendar'
+import { QCalendarMonth, today, parseTimestamp, addToDate } from '@quasar/quasar-ui-qcalendar'
+import navigationBar from 'components/NavigationBar.vue'
 
-const selectedDate = ref('2023-05-15')
+defineOptions({
+  name: 'MainLayout'
+})
+
+const calendarRef = useTemplateRef('calendar')
+
+const selectedDate = ref(today())
 const eventDialog = ref(false)
 const selectedEvent = ref(null)
 const selectedTypes = ref(['tarea', 'pago', 'evento'])
@@ -131,8 +146,21 @@ const events = [
   }
 ]
 
+const eventsMap = computed(() => {
+  const map = {}
+  if (events.length > 0) {
+    events.forEach(event => {
+      if (filteredEvents.value.includes(event)) (map[ event.date ] = (map[ event.date ] || [])).push(event)
+    })
+  }
+  console.log(map)
+  return map
+})
+
 const filteredEvents = computed(() => {
-  return events.filter(event => selectedTypes.value.includes(event.type))
+  const filtered = events.filter(event => selectedTypes.value.includes(event.type))
+  console.log(filtered); // Verificar qué eventos se filtran
+  return filtered
 })
 
 const getEventColor = (event) => {
@@ -142,9 +170,9 @@ const getEventColor = (event) => {
 const getEventIcon = (event) => {
   switch (event.type) {
     case 'tarea':
-      return 'assignment'
+      return 'task'
     case 'pago':
-      return 'attach_money'
+      return 'euro'
     case 'evento':
       return 'event'
     default:
@@ -153,7 +181,7 @@ const getEventIcon = (event) => {
 }
 
 const onDateClick = (data) => {
-  console.log('Fecha seleccionada:', data.date)
+  console.log('Fecha seleccionada:', data.scope)
 }
 
 const onEventClick = (data) => {
@@ -161,12 +189,25 @@ const onEventClick = (data) => {
   eventDialog.value = true
 }
 
+const onToday = () => {
+  calendarRef.value.moveToToday()
+}
+
+const onPrev = () => {
+  calendarRef.value.prev()
+}
+
+const onNext = () => {
+  calendarRef.value.next()
+}
+
+
 const formatDate = (dateString) => {
   return date.formatDate(dateString, 'DD/MM/YYYY')
 }
 
 const formatTime = (timeString) => {
-  return date.formatDate(`2023-01-01T${timeString}`, 'HH:mm')
+  return date.formatDate(`2024-01-01T${timeString}`, 'HH:mm')
 }
 </script>
 

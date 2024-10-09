@@ -46,8 +46,8 @@
     </q-page-container>
 
     <q-footer elevated class="primary text-white">
-<!--
         <q-tabs
+        v-if="!logged"
         narrow-indicator
         dense
         indicator-color="purple"
@@ -57,9 +57,9 @@
           <q-route-tab to="/login" label="Login" icon="login" />
           <q-route-tab to="/register" label="Register" icon="app_registration" />
         </q-tabs>
--->
 
         <q-tabs
+        v-else
         class="bg-grey-9"
         narrow-indicator
         dense
@@ -89,6 +89,7 @@ defineOptions({
   name: 'MainLayout'
 })
 
+const logged = true
 const linksList = [
   {
     title: 'Piso',
