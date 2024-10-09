@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-md">
     <h2 class="text-h4 text-primary q-mb-md">Calendario general</h2>
-    <div class="row q-col-gutter-md">
+    <div class="col q-col-gutter-md justify-center">
       <div class="col-12 col-md-3">
         <q-card>
           <q-card-section>
@@ -15,7 +15,7 @@
           </q-card-section>
         </q-card>
       </div>
-      <div class="subcontent">
+      <div class="col">
         <navigation-bar
           @today="onToday"
           @prev="onPrev"
