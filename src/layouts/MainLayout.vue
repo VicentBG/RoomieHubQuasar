@@ -136,7 +136,7 @@ defineOptions({
   name: 'MainLayout'
 })
 
-const logged = ref(false)
+const logged = ref(true)
 const linksList = [
   {
     title: 'Piso',
