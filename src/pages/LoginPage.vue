@@ -49,6 +49,7 @@
               color="primary" 
               class="full-width q-mt-md"
               to="/dashboard"
+              @click="roomieStore.log"
             />
           </q-form>
         </q-card-section>
@@ -75,8 +76,11 @@
   <script setup>
   import { ref } from 'vue'
   import { useQuasar } from 'quasar'
+  import { useRoomieStore } from 'src/stores/roomie-store'
   
   const $q = useQuasar()
+
+  const roomieStore = useRoomieStore()
   
   const email = ref('')
   const password = ref('')

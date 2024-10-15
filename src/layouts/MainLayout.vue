@@ -18,7 +18,7 @@
               </q-item-section>
             </q-item>
             <q-separator inset />
-            <q-item clickable v-close-popup tabindex="0" onclick="logged = false">
+            <q-item clickable v-close-popup tabindex="0" to="/" @click="roomieStore.logout">
               <q-item-section avatar>
                 <q-avatar icon="logout" color="secondary" text-color="white" />
               </q-item-section>
@@ -129,14 +129,18 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
+import { useRoomieStore } from 'src/stores/roomie-store'
 
 defineOptions({
   name: 'MainLayout'
 })
 
-const logged = ref(true)
+const roomieStore = useRoomieStore()
+
+const logged = computed(() => roomieStore.logged)
+
 const linksList = [
   {
     title: 'Piso',
@@ -193,4 +197,5 @@ const rightDrawerOpen = ref(false)
 function toggleRightDrawer () {
   rightDrawerOpen.value = !rightDrawerOpen.value
 }
+
 </script>
