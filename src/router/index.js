@@ -11,6 +11,8 @@ import routes from './routes'
  * with the Router instance.
  */
 
+import { useRoomieStore } from 'src/stores/roomie-store'
+
 export default route(function (/* { store, ssrContext } */) {
   const createHistory = process.env.SERVER
     ? createMemoryHistory
@@ -24,6 +26,20 @@ export default route(function (/* { store, ssrContext } */) {
     // quasar.conf.js -> build -> vueRouterMode
     // quasar.conf.js -> build -> publicPath
     history: createHistory(process.env.VUE_ROUTER_BASE)
+  })
+
+  const roomieStore = useRoomieStore()
+
+  Router.beforeEach((to, from) => {
+    if (
+      // make sure the user is authenticated
+      !roomieStore.logged &&
+      // ❗️ Avoid an infinite redirect
+      (to.name !== 'Landing' && to.name !== 'Login' && to.name !== 'Register')
+    ) {
+      // redirect the user to the login page
+      return { name: 'Landing' }
+    }
   })
 
   return Router

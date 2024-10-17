@@ -18,7 +18,7 @@
               </q-item-section>
             </q-item>
             <q-separator inset />
-            <q-item clickable v-close-popup tabindex="0" to="/" @click="roomieStore.logout">
+            <q-item clickable v-close-popup tabindex="0" @click="do_logout">
               <q-item-section avatar>
                 <q-avatar icon="logout" color="secondary" text-color="white" />
               </q-item-section>
@@ -196,6 +196,11 @@ const rightDrawerOpen = ref(false)
 
 function toggleRightDrawer () {
   rightDrawerOpen.value = !rightDrawerOpen.value
+}
+
+const do_logout = () => {
+  roomieStore.logout()
+  window.location.reload()
 }
 
 </script>

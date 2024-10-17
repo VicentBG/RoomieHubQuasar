@@ -9,7 +9,6 @@
           <q-card class="bg-orange-1">
             <q-card-section>
               <div class="text-h6">Próximas Tareas</div>
-              <q-btn color="primary" size="sm" icon="lists" to="/calendar" />
             </q-card-section>
             <q-card-section>
               <q-list bordered separator>
