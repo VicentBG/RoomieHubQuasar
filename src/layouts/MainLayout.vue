@@ -129,7 +129,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
 import { useRoomieStore } from 'src/stores/roomie-store'
 
