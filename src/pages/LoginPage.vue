@@ -12,6 +12,7 @@
               v-model="email"
               label="Correo electrónico"
               type="email"
+              id="email"
               :rules="[val => !!val || 'El correo es requerido', isValidEmail]"
             >
               <template v-slot:prepend>
@@ -24,6 +25,7 @@
               v-model="password"
               label="Contraseña"
               :type="isPwd ? 'password' : 'text'"
+              id="password"
               :rules="[val => !!val || 'La contraseña es requerida']"
             >
               <template v-slot:prepend>
@@ -48,8 +50,6 @@
               type="submit" 
               color="primary" 
               class="full-width q-mt-md"
-              to="/dashboard"
-              @click="roomieStore.log"
             />
           </q-form>
         </q-card-section>
@@ -75,11 +75,12 @@
   
   <script setup>
   import { ref } from 'vue'
+  import { useRouter } from 'vue-router'
   import { useQuasar } from 'quasar'
   import { useRoomieStore } from 'src/stores/roomie-store'
   
+  const router = useRouter()
   const $q = useQuasar()
-
   const roomieStore = useRoomieStore()
   
   const email = ref('')
@@ -93,13 +94,24 @@
   }
   
   const onSubmit = () => {
-    $q.notify({
-      color: 'green-4',
-      textColor: 'white',
-      icon: 'cloud_done',
-      message: 'Inicio de sesión exitoso'
-    })
-    // Aquí iría la lógica de autenticación real
+    if(roomieStore.roomies.find(roomie => roomie.email === email.value && roomie.password === password.value)) {
+      $q.notify({
+        color: 'green-4',
+        textColor: 'white',
+        icon: 'cloud_done',
+        message: 'Inicio de sesión exitoso'
+      })
+      roomieStore.log()
+      router.push('/dashboard')
+    }
+    else {
+      $q.notify({
+        color: 'red-4',
+        textColor: 'white',
+        icon: 'warning',
+        message: 'Correo electrónico o contraseña incorrectos'
+      })
+    }
   }
   </script>
   

@@ -4,7 +4,12 @@ import { ref } from 'vue';
 export const useRoomieStore = defineStore('roomie',() => {
 
     /* state */
-    const users = ref([])
+    const roomies = ref([
+        {
+            email: "1234@1234.com",
+            password: "1234vbg"
+        }
+    ])
     const logged = ref(false)
     const events = ref([
     {
@@ -112,8 +117,8 @@ export const useRoomieStore = defineStore('roomie',() => {
         logged.value = false
     }
 
-    function addUser(user) {
-        users.value.push(user)  
+    function addRoomie(roomie) {
+        roomies.value.push(roomie)  
     }
 
     function addEvent(event) {
@@ -122,14 +127,14 @@ export const useRoomieStore = defineStore('roomie',() => {
 
     return { 
         /* state */
-        users,
+        roomies,
         logged,
         events,
 
         /* actions */
         log,
         logout,
-        addUser,
+        addRoomie,
         addEvent
     }
 });

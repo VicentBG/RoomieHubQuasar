@@ -130,6 +130,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router';
 import EssentialLink from 'components/EssentialLink.vue'
 import { useRoomieStore } from 'src/stores/roomie-store'
 
@@ -137,6 +138,7 @@ defineOptions({
   name: 'MainLayout'
 })
 
+const router = useRouter()
 const roomieStore = useRoomieStore()
 
 const logged = computed(() => roomieStore.logged)
@@ -200,7 +202,7 @@ function toggleRightDrawer () {
 
 const do_logout = () => {
   roomieStore.logout()
-  window.location.reload()
+  router.push('/')
 }
 
 </script>

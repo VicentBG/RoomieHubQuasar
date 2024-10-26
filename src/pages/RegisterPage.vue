@@ -12,6 +12,7 @@
               v-model="email"
               label="Correo electrónico"
               type="email"
+              id="email"
               :rules="[val => !!val || 'El correo es requerido']"
             />
   
@@ -20,6 +21,7 @@
               v-model="password"
               label="Contraseña"
               :type="isPwd ? 'password' : 'text'"
+              id="password"
               :rules="[val => !!val || 'La contraseña es requerida']"
             >
               <template v-slot:append>
@@ -39,6 +41,7 @@
                 filled
                 v-model="apartmentCode"
                 label="Código del piso"
+                id="apartmentCode"
                 :rules="[val => !!val || 'El código del piso es requerido']"
               />
             </template>
@@ -48,18 +51,21 @@
                 filled
                 v-model="newApartmentCode"
                 label="Código del nuevo piso"
+                id="newApartmentCode"
                 :rules="[val => !!val || 'El código del nuevo piso es requerido']"
               />
               <q-input
                 filled
                 v-model="apartmentName"
                 label="Nombre del nuevo piso"
+                id="apartmentName"
                 :rules="[val => !!val || 'El nombre del piso es requerido']"
               />
               <q-input
                 filled
                 v-model="apartmentAddress"
                 label="Dirección del nuevo piso"
+                id="apartmentAddress"
                 :rules="[val => !!val || 'La dirección del piso es requerida']"
               />
             </template>
@@ -82,8 +88,12 @@
   
   <script setup>
   import { ref } from 'vue'
+  import { useRouter } from 'vue-router'
   import { useQuasar } from 'quasar'
+  import { useRoomieStore } from 'src/stores/roomie-store'
   
+  const router = useRouter()
+  const roomieStore = useRoomieStore()
   const $q = useQuasar()
   
   const email = ref('')
@@ -102,6 +112,13 @@
       icon: 'cloud_done',
       message: 'Registro exitoso'
     })
+
+    roomieStore.addRoomie({
+      email: email.value,
+      password: password.value
+    })
+    roomieStore.log()
+    router.push('/dashboard')
   }
   </script>
   
