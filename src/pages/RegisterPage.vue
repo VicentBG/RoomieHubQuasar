@@ -1,8 +1,8 @@
 <template>
-  <q-page class="flex flex-center">
-    <q-card class="register-card">
-      <q-card-section>
-        <div class="text-h6">Registro en RoomieHub</div>
+  <q-page class="flex flex-center bg-grey-2">
+    <q-card class="register-card" style="width: 400px; max-width: 90vw;">
+      <q-card-section class="bg-primary text-white">
+        <div class="text-h5 text-center">Registro en RoomieHub</div>
       </q-card-section>
 
       <q-card-section>
@@ -22,7 +22,7 @@
           <q-select filled v-model="userType" :options="userTypeOptions" label="Tipo de usuario"
             hint="Selecciona tu tipo de usuario" />
 
-          <template v-if="userType === 'Propietario'">
+          <template v-if="userType === 'Fundador'">
             <q-btn label="Crear nuevo piso" color="secondary" @click="showNewApartmentForm = true"
               class="full-width q-mb-md" />
 
@@ -57,7 +57,7 @@ const name = ref('')
 const email = ref('')
 const password = ref('')
 const userType = ref('Estudiante')
-const userTypeOptions = ['Estudiante', 'Propietario']
+const userTypeOptions = ['Estudiante', 'Fundador']
 const selectedApartment = ref(null)
 const apartmentOptions = ref([
   { label: 'Piso 1', value: 1 },
