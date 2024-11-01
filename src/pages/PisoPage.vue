@@ -8,8 +8,8 @@
         <q-card>
           <q-card-section>
             <div class="text-h6">Dirección</div>
-            <p>{{ apartment.address }}</p>
-            <p>{{ apartment.postalCode }} {{ apartment.city }}</p>
+            <p>{{ piso.direccion }}</p>
+            <p>{{ piso.codPostal }} {{ piso.ciudad }}</p>
           </q-card-section>
 
           <q-separator />
@@ -17,7 +17,7 @@
           <q-card-section>
             <div class="text-h6">Características</div>
             <q-list dense>
-              <q-item v-for="(value, key) in apartment.features" :key="key">
+              <q-item v-for="(value, key) in piso.caracteristicas" :key="key">
                 <q-item-section avatar>
                   <q-icon :name="getFeatureIcon(key)" color="primary" />
                 </q-item-section>
@@ -41,7 +41,7 @@
 
           <q-card-section>
             <q-list>
-              <q-item v-for="roomie in apartment.roomies" :key="roomie.id">
+              <q-item v-for="roomie in piso.roomies" :key="roomie.id">
                 <q-item-section avatar>
                   <q-avatar>
                     <img :src="roomie.avatar">
@@ -68,7 +68,7 @@
           </q-card-section>
 
           <q-card-section>
-            <q-img :src="apartment.floorPlan" spinner-color="primary" style="height: 400px;">
+            <q-img :src="piso.localizacion" spinner-color="primary" style="height: 400px;">
               <div class="absolute-bottom text-subtitle1 text-center">
                 Plano del Piso
               </div>
@@ -88,7 +88,7 @@
 
           <q-card-section>
             <div class="row q-col-gutter-md">
-              <div v-for="service in apartment.nearbyServices" :key="service.name" class="col-6 col-sm-4 col-md-3">
+              <div v-for="service in piso.servicios" :key="service.name" class="col-6 col-sm-4 col-md-3">
                 <q-item>
                   <q-item-section avatar>
                     <q-icon :name="service.icon" color="primary" />
@@ -127,11 +127,11 @@
 <script setup>
 import { ref } from 'vue'
 
-const apartment = ref({
-  address: 'Calle Universidad, 123',
-  postalCode: '28001',
-  city: 'Madrid',
-  features: {
+const piso = ref({
+  direccion: 'Calle Universidad, 123',
+  codPostal: '28001',
+  ciudad: 'Madrid',
+  caracteristicas: {
     bedrooms: 4,
     bathrooms: 2,
     area: '120 m²',
@@ -146,8 +146,8 @@ const apartment = ref({
     { id: 3, name: 'Elena Martínez', occupation: 'Estudiante de Medicina', avatar: 'https://cdn.quasar.dev/img/avatar4.jpg' },
     { id: 4, name: 'David López', occupation: 'Estudiante de Economía', avatar: 'https://cdn.quasar.dev/img/avatar5.jpg' }
   ],
-  floorPlan: 'src/assets/Plano.png', // Reemplazar con un plano real
-  nearbyServices: [
+  localizacion: 'src/assets/Plano.png', // Reemplazar con un plano real
+  servicios: [
     { name: 'Supermercado', distance: '200m', icon: 'shopping_cart' },
     { name: 'Parada de Metro', distance: '500m', icon: 'subway' },
     { name: 'Gimnasio', distance: '1km', icon: 'fitness_center' },
