@@ -53,36 +53,14 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useQuasar } from 'quasar'
+import { useRoomieStore } from 'src/stores/roomie-store'
 import AddCompra from 'components/AddCompra.vue'
 
-const $q = useQuasar()
+const roomieStore = useRoomieStore()
 
-const shoppingItems = ref([
-  {
-    id: 1,
-    name: 'Leche',
-    quantity: 2,
-    unit: 'litros',
-    addedBy: 'Ana García',
-    purchased: false
-  },
-  {
-    id: 2,
-    name: 'Pan',
-    quantity: 1,
-    unit: 'barra',
-    addedBy: 'Carlos Rodríguez',
-    purchased: true
-  },
-  {
-    id: 3,
-    name: 'Huevos',
-    quantity: 12,
-    unit: 'unidades',
-    addedBy: 'Elena Martínez',
-    purchased: false
-  }
-])
+const shoppingItems = ref(roomieStore.shoppingItems)
+
+const $q = useQuasar()
 
 const search = ref('')
 const showNewItemFormDialog = ref(false)

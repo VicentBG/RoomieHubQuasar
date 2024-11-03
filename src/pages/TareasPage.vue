@@ -45,34 +45,12 @@
 <script setup>
 import { ref } from 'vue'
 import { date } from 'quasar'
+import { useRoomieStore } from 'src/stores/roomie-store';
 import AddTarea from 'components/AddTarea.vue'
 
-const tasks = ref([
-  {
-    id: 1,
-    title: 'Limpiar la cocina',
-    description: 'Limpiar la encimera, fregar los platos y barrer el suelo',
-    assignedTo: 'Ana García',
-    dueDate: '2023-05-20',
-    completed: false
-  },
-  {
-    id: 2,
-    title: 'Comprar suministros',
-    description: 'Comprar papel higiénico, detergente y bolsas de basura',
-    assignedTo: 'Carlos Rodríguez',
-    dueDate: '2023-05-22',
-    completed: false
-  },
-  {
-    id: 3,
-    title: 'Pagar la factura de internet',
-    description: 'Transferir el dinero para la factura mensual de internet',
-    assignedTo: 'Elena Martínez',
-    dueDate: '2023-05-25',
-    completed: true
-  }
-])
+const roomieStore = useRoomieStore()
+
+const tasks = ref(roomieStore.tasks)
 
 const taskDetailsDialog = ref(false)
 const selectedTask = ref(null)

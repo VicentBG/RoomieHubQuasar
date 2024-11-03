@@ -126,36 +126,11 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRoomieStore } from 'src/stores/roomie-store';
 
-const piso = ref({
-  direccion: 'Calle Universidad, 123',
-  codPostal: '28001',
-  ciudad: 'Madrid',
-  caracteristicas: {
-    bedrooms: 4,
-    bathrooms: 2,
-    area: '120 m²',
-    furnished: 'Sí',
-    internet: 'Fibra 300Mb',
-    heating: 'Calefacción central',
-    airConditioning: 'Sí'
-  },
-  roomies: [
-    { id: 1, name: 'Ana García', occupation: 'Estudiante de Psicología', avatar: 'https://cdn.quasar.dev/img/avatar2.jpg' },
-    { id: 2, name: 'Carlos Rodríguez', occupation: 'Estudiante de Ingeniería', avatar: 'https://cdn.quasar.dev/img/avatar3.jpg' },
-    { id: 3, name: 'Elena Martínez', occupation: 'Estudiante de Medicina', avatar: 'https://cdn.quasar.dev/img/avatar4.jpg' },
-    { id: 4, name: 'David López', occupation: 'Estudiante de Economía', avatar: 'https://cdn.quasar.dev/img/avatar5.jpg' }
-  ],
-  localizacion: 'src/assets/Plano.png', // Reemplazar con un plano real
-  servicios: [
-    { name: 'Supermercado', distance: '200m', icon: 'shopping_cart' },
-    { name: 'Parada de Metro', distance: '500m', icon: 'subway' },
-    { name: 'Gimnasio', distance: '1km', icon: 'fitness_center' },
-    { name: 'Biblioteca', distance: '800m', icon: 'local_library' },
-    { name: 'Parque', distance: '600m', icon: 'park' },
-    { name: 'Farmacia', distance: '300m', icon: 'local_pharmacy' }
-  ]
-})
+const roomieStore = useRoomieStore()
+
+const piso = ref(roomieStore.piso)
 
 const chatDialog = ref(false)
 const selectedRoomie = ref(null)

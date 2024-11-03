@@ -63,34 +63,12 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { date } from 'quasar'
+import { useRoomieStore } from 'src/stores/roomie-store'
 import AddGasto from 'components/AddGasto.vue'
 
-const expenses = ref([
-  {
-    id: 1,
-    description: 'Compra semanal',
-    amount: 75.50,
-    category: 'Alimentación',
-    paidBy: 'Ana García',
-    date: '2023-05-15'
-  },
-  {
-    id: 2,
-    description: 'Factura de luz',
-    amount: 60.00,
-    category: 'Servicios',
-    paidBy: 'Carlos Rodríguez',
-    date: '2023-05-10'
-  },
-  {
-    id: 3,
-    description: 'Netflix',
-    amount: 11.99,
-    category: 'Entretenimiento',
-    paidBy: 'Elena Martínez',
-    date: '2023-05-05'
-  }
-])
+const roomieStore = useRoomieStore()
+
+const expenses = ref(roomieStore.expenses)
 
 const columns = [
   { name: 'description', required: true, label: 'Descripción', align: 'left', field: 'description', sortable: true },
