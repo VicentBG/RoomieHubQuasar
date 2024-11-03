@@ -6,41 +6,20 @@
         <q-card>
           <q-card-section>
             <div class="text-h6">Filtros</div>
-            <q-option-group
-              v-model="selectedTypes"
-              :options="typeOptions"
-              type="checkbox"
-              color="primary"
-            />
+            <q-option-group v-model="selectedTypes" :options="typeOptions" type="checkbox" color="primary" />
           </q-card-section>
         </q-card>
       </div>
       <div class="col">
-        <navigation-bar
-          @today="onToday"
-          @prev="onPrev"
-          @next="onNext"
-        />
+        <navigation-bar @today="onToday" @prev="onPrev" @next="onNext" />
       </div>
       <div class="col-12 col-md-9">
-        <q-calendar-month
-          ref="calendar"
-          v-model="selectedDate"
-          animated
-          bordered
-          :events="filteredEvents"
-          @click-date="onDateClick"
-          @click-event="onEventClick"
-        >
+        <q-calendar-month ref="calendar" v-model="selectedDate" animated bordered :events="filteredEvents"
+          @click-date="onDateClick" @click-event="onEventClick">
           <template #day="{ scope: { timestamp } }">
             <template v-for="event in eventsMap[timestamp.date]" :key="event.id">
-              <q-badge
-                :color="getEventColor(event)"
-                :text-color="event.textColor || 'white'"
-                class="q-mb-xs cursor-pointer"
-                style="width: 100%;"
-                @click.stop="onEventClick({ event })"
-              >
+              <q-badge :color="getEventColor(event)" :text-color="event.textColor || 'white'"
+                class="q-mb-xs cursor-pointer" style="width: 100%;" @click.stop="onEventClick({ event })">
                 <q-icon :name="getEventIcon(event)" size="xs" class="q-mr-xs" />
                 {{ event.title }}
               </q-badge>
@@ -81,7 +60,7 @@ import navigationBar from 'components/NavigationBar.vue'
 import { useRoomieStore } from 'src/stores/roomie-store'
 
 const roomieStore = useRoomieStore()
-const events = computed(() => roomieStore.events)
+const events = ref(roomieStore.events)
 
 defineOptions({
   name: 'MainLayout'
@@ -105,7 +84,7 @@ const eventsMap = computed(() => {
   const map = {}
   if (events.value.length > 0) {
     events.value.forEach(event => {
-      if (filteredEvents.value.includes(event)) (map[ event.date ] = (map[ event.date ] || [])).push(event)
+      if (filteredEvents.value.includes(event)) (map[event.date] = (map[event.date] || [])).push(event)
     })
   }
   console.log(map)
