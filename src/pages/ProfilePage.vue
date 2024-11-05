@@ -68,18 +68,13 @@
 <script setup>
 import { ref, watch } from 'vue'
 import { useQuasar } from 'quasar'
+import { useRoomieStore } from 'src/stores/roomie-store';
+
+const roomieStore = useRoomieStore()
+
+const userProfile = ref(roomieStore.userProfile)
 
 const $q = useQuasar()
-
-const userProfile = ref({
-  name: 'Ana García',
-  alias: 'AnaG',
-  email: 'ana.garcia@example.com',
-  phone: '+34 612 345 678',
-  bio: 'Estudiante de Psicología, amante de los libros y el yoga. Buscando compañeros de piso para crear un ambiente acogedor y divertido.',
-  avatar: 'https://cdn.quasar.dev/img/avatar2.jpg',
-  darkMode: false
-})
 
 const editMode = ref(false)
 const newAvatar = ref(null)

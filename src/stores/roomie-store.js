@@ -7,6 +7,7 @@ import {
   tasksData,
   expensesData,
   shoppingItemsData,
+  userProfileData,
 } from "./data.js";
 
 export const useRoomieStore = defineStore("roomie", () => {
@@ -24,6 +25,7 @@ export const useRoomieStore = defineStore("roomie", () => {
   const tasks = ref(tasksData);
   const expenses = ref(expensesData);
   const shoppingItems = ref(shoppingItemsData);
+  const userProfile = ref(userProfileData);
 
   /* actions */
   function log() {
@@ -52,6 +54,7 @@ export const useRoomieStore = defineStore("roomie", () => {
     tasks,
     expenses,
     shoppingItems,
+    userProfile,
 
     /* actions */
     log,

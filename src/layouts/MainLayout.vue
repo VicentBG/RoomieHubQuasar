@@ -51,37 +51,19 @@
           </q-list>
         </q-btn-dropdown>
 
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleRightDrawer"
-        />
+        <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleRightDrawer" />
 
       </q-toolbar>
 
     </q-header>
 
-    <q-drawer
-      v-model="rightDrawerOpen"
-      side="right"
-      show-if-above
-      bordered
-    >
+    <q-drawer v-model="rightDrawerOpen" side="right" show-if-above bordered>
       <q-list>
-        <q-item-label
-          header
-        >
+        <q-item-label header>
           Menú principal
         </q-item-label>
 
-        <EssentialLink
-          v-for="link in linksList"
-          :key="link.title"
-          v-bind="link"
-        />
+        <EssentialLink v-for="link in linksList" :key="link.title" v-bind="link" />
       </q-list>
     </q-drawer>
 
@@ -90,39 +72,25 @@
     </q-page-container>
 
     <q-footer elevated class="primary text-white">
-        <q-tabs
-        v-if="!logged"
-        class="bg-grey-6"
-        narrow-indicator
-        dense
-        indicator-color="purple"
-        :breakpoint="0"
+      <q-tabs v-if="!logged" class="bg-grey-6" narrow-indicator dense indicator-color="purple" :breakpoint="0"
         align="center">
-          <q-route-tab class="text-indigo" to="/" label="Home" icon="home" />
-          <q-route-tab class="text-orange" to="/login" label="Login" icon="login" />
-          <q-route-tab class="text-teal" to="/register" label="Register" icon="app_registration" />
-        </q-tabs>
+        <q-route-tab class="text-indigo" to="/" label="Home" icon="home" />
+        <q-route-tab class="text-orange" to="/login" label="Login" icon="login" />
+        <q-route-tab class="text-teal" to="/register" label="Register" icon="app_registration" />
+      </q-tabs>
 
-        <q-tabs
-        v-else
-        class="bg-grey-6"
-        narrow-indicator
-        dense
-        indicator-color="purple"
-        outside-arrows
-        mobile-arrows
-        :breakpoint="0"
-        align="center">
-          <q-route-tab class="text-indigo" to="/dashboard" label="Home" icon="home" />
-          <q-route-tab class="text-orange" to="/piso" label="Piso" icon="apartment" />
-          <q-route-tab class="text-teal" to="/roomies" label="Roomies" icon="groups" />
-          <q-route-tab class="text-purple" to="/eventos" label="Eventos" icon="event" />
-          <q-route-tab class="text-green" to="/tareas" label="Tareas" icon="task" />
-          <q-route-tab class="text-red" to="/gastos" label="Gastos" icon="payments" />
-          <q-route-tab class="text-blue" to="/compras" label="Compras" icon="shopping_cart" />
-          <q-route-tab class="text-yellow" to="/calendar" label="Calendario" icon="calendar_month" />
-        </q-tabs>
-        
+      <q-tabs v-else class="bg-grey-6" narrow-indicator dense indicator-color="purple" outside-arrows mobile-arrows
+        :breakpoint="0" align="center">
+        <q-route-tab class="text-indigo" to="/dashboard" label="Home" icon="home" />
+        <q-route-tab class="text-orange" to="/piso" label="Piso" icon="apartment" />
+        <q-route-tab class="text-teal" to="/roomies" label="Roomies" icon="groups" />
+        <q-route-tab class="text-purple" to="/eventos" label="Eventos" icon="event" />
+        <q-route-tab class="text-green" to="/tareas" label="Tareas" icon="task" />
+        <q-route-tab class="text-red" to="/gastos" label="Gastos" icon="payments" />
+        <q-route-tab class="text-blue" to="/compras" label="Compras" icon="shopping_cart" />
+        <q-route-tab class="text-yellow" to="/calendar" label="Calendario" icon="calendar_month" />
+      </q-tabs>
+
     </q-footer>
 
   </q-layout>
@@ -188,7 +156,7 @@ const linksList = [
   },
   {
     title: 'About',
-    caption: 'Sobre mí',
+    caption: 'Todo sobre la app',
     icon: 'info',
     to: '/about'
   }
@@ -196,7 +164,7 @@ const linksList = [
 
 const rightDrawerOpen = ref(false)
 
-function toggleRightDrawer () {
+function toggleRightDrawer() {
   rightDrawerOpen.value = !rightDrawerOpen.value
 }
 
