@@ -6,6 +6,7 @@
       <!-- Dirección y Características -->
       <div class="col-12 col-md-6">
         <q-card>
+          <img src="https://cdn.quasar.dev/img/parallax1.jpg">
           <q-card-section>
             <div class="text-h6">Dirección</div>
             <p>{{ piso.direccion }}</p>
